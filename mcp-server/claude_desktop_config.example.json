@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "coupon-cycle": {
+      "command": "node",
+      "args": [
+        "/REPLACE/WITH/ABSOLUTE/PATH/TO/credit-card-tracker/mcp-server/build/index.js"
+      ],
+      "env": {
+        "COUPONCYCLE_API_URL": "http://localhost:3000/api"
+      }
+    }
+  }
+}
