@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 import { searchCardsOptimized, hybridSearch, getSearchSuggestionsOptimized } from '@/lib/search/optimizedSearch';
 
 // Enable caching for search results
@@ -8,11 +6,6 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('q') || '';
     const type = searchParams.get('type') || 'hybrid'; // 'hybrid' or 'optimized'
@@ -65,11 +58,6 @@ export async function GET(request: NextRequest) {
 // POST endpoint for more complex search queries
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const body = await request.json();
     const { 
       query, 

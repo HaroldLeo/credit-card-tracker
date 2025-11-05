@@ -11,6 +11,8 @@ This MCP server exposes the CouponCycle API endpoints as tools that Claude can u
 - Perform advanced filtered searches
 - Check API health status
 
+**All tools are fully functional** - The search endpoints query public predefined card data and do not require authentication.
+
 ## Prerequisites
 
 1. **CouponCycle app must be running locally**
@@ -257,9 +259,10 @@ Verify it's accessible at http://localhost:3000
 ## Security Notes
 
 - This MCP server only works with a **local** CouponCycle instance
-- No authentication is implemented (assumes local trusted environment)
-- For user-specific operations (like managing personal cards), you would need to add session/auth token handling
-- Currently focuses on public endpoints (search, predefined cards)
+- **Search endpoints are public** - They query predefined cards (reference data) which don't require authentication
+- User-specific endpoints (like `/api/user-cards`) still require authentication and are not exposed by this MCP server
+- For future user-specific operations, you would need to add session/auth token handling
+- Currently focuses on public endpoints (search, predefined cards, health checks)
 
 ## Future Enhancements
 
